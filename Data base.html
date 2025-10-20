@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple HTML Database</title>
+</head>
+<body>
+  <h2>Save Name</h2>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <button onclick="saveData()">Save</button>
+  <button onclick="showData()">Show All</button>
+
+  <ul id="dataList"></ul>
+
+  <script>
+    function saveData() {
+      const name = document.getElementById("nameInput").value;
+      let data = JSON.parse(localStorage.getItem("names")) || [];
+      data.push(name);
+      localStorage.setItem("names", JSON.stringify(data));
+      document.getElementById("nameInput").value = "";
+    }
+
+    function showData() {
+      const data = JSON.parse(localStorage.getItem("names")) || [];
+      const list = document.getElementById("dataList");
+      list.innerHTML = "";
+      data.forEach(name => {
+        const li = document.createElement("li");
+        li.textContent = name;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

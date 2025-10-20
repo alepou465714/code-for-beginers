@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Login Page</title>
+</head>
+<body>
+  <h2>Register</h2>
+  <input id="newUser" placeholder="Username"><br>
+  <input id="newPass" type="password" placeholder="Password"><br>
+  <button onclick="register()">Register</button>
+
+  <h2>Login</h2>
+  <input id="user" placeholder="Username"><br>
+  <input id="pass" type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+
+  <p id="message"></p>
+
+  <script>
+    function register() {
+      const u = document.getElementById("newUser").value;
+      const p = document.getElementById("newPass").value;
+
+      if (!u || !p) return alert("Enter username and password!");
+
+      // Save user info locally
+      localStorage.setItem(u, p);
+      alert("Registered!");
+    }
+
+    function login() {
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
+      const savedPass = localStorage.getItem(u);
+
+      if (savedPass === p) {
+        document.getElementById("message").textContent = "✅ Login successful!";
+      } else {
+        document.getElementById("message").textContent = "❌ Invalid credentials!";
+      }
+    }
+  </script>
+</body>
+</html>
