@@ -8,6 +8,7 @@
   <input type="text" id="nameInput" placeholder="Enter your name">
   <button onclick="saveData()">Save</button>
   <button onclick="showData()">Show All</button>
+  <button onclick="clearData()">Clear</button>
 
   <ul id="dataList"></ul>
 
@@ -29,6 +30,10 @@
         li.textContent = name;
         list.appendChild(li);
       });
+    }
+    function clearData() {
+      localStorage.removeItem("names"); // or localStorage.clear() to remove everything
+      document.getElementById("dataList").innerHTML = "";
     }
   </script>
 </body>
